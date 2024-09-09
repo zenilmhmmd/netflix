@@ -5,59 +5,551 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Netflix Clone</title>
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body class="bg-black text-white">
-    
-  <header class="flex justify-between items-center p-4 bg-black fixed w-full z-10">
-    <div class="text-2xl font-bold"><img src="data:image/png;base64,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" alt=""></div>
-    <nav class="space-x-4">
+    <style>
+        .netflix-heading {
+          font-family: 'Bebas Neue', cursive;
+          font-weight: 700; 
+          letter-spacing: 1.5px; 
+        }
+        .side-menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    .side-menu.open {
+      transform: translateX(0);
+    }
+      </style>
+  <header class="flex justify-between items-center px-4 py-2 bg-black fixed w-full z-10">
+    <div class="text-xl font-bold flex items-center">
+      <img id="menu-toggle" class=" text-white px-4 py-2 rounded" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAwFBMVEUAAAD/AAD///+yAABgAACWAACRAAC3AACsAACvAABcXFwIAAAOAAAdAAAmJiYRAABJAABubm4XAAA3AABmAADt7e2kpKQiAAAmAABRAABXAACgAACmAABDAAA9AACwsLA0AAB6AACJAAB6enouAACAAABsAABUAAD0AABpAADgAAAqKirS0tLrAADDAAAqAADg4OAPDw8aGhpRUVHAwMCurq6VlZVDQ0PRAADMAABzc3OIiIhnZ2fn5+fHx8c3NzfUp20mAAAE4ElEQVR4nO3bC1MaPRQG4DSsuqAgRVnuCoKghcqlgK2g/v9/9SVZdnOyiPrNdEkN7zNVa8Iwh9ewe/YCYwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADuKh4da7aLscT7Rtxsz59q+y9uT7zfNISt6dPTAwjBy9yRDJrJ6bNz7cxGffvgnTzQhZBPTJ+XtHMrBe6Bd+L/JBk8JKZLea1kpcA98E4yJ3QhtMzpUkVLrhFniAyyP0gGP8zp/Fir2KkwfSKDTIYuhHtjutLTqpZKTJ3MIEv3j3fGdLWt9SyVmDq1DvydjdL4SmtbKjF1KoPsn12NUq8lXKl/rbalElOnMsj4tFHyyXS72IoUr6wVmbIwg8yuRumiVoy5nsGuRulqUIu1dj/L17bJwGyUivF0q64V33maLy3KYEej1PK0msUyUxVlYDZK/Wi6eKkNbNaZpjiDtxul2r1Wt1lnmvQ6MBql6LRara95VgtNkc7gzUZp0NEOIIM3G6U6yeDSbqXpIRmYjVJ4pOzdav0PnurLohk0aAhho+TdaAeRgX++1ShdHscRHHds15oWIwOWTTZKfXIJxt0MMn6syViyUeofabe2a01L3W/GGowdJxqlTkNzN4MmeZXid7p/FI1SRyfUfONKnBsGjWipNxpH4ve+2Sh14vdJ03f2kmyNvOHVi6THjz67zWQjGXczIJfe1WIv0oVQutW7jZMj27WmpagbgJtwo0cPGx46B5HBDemG1UiVLoRm5gAyaJEINk0QbZTu/EPIgBwYRo0gXQh/su5ncNUhZ0k2Y7RR+uYfQAYkgvhyK22Ufmedz+Dinpw1jQaNRsn9ddC+JGfP41HjRHvW9Qx6HrmKEo8ajVLUIribQX0QIxdR6Bmln77j62CsryfWyMW0Cl0ID45nUC0SZJxebQgbJXczqLQIOrHdKLmbAbnZxrjBYKtRcncd5C+0tjGTbJTczaC088azZKPkcAa98AbM3rjXG5tTiUbJ3QzOq1riRtREo+RwBu/ckGw2Su5mcJYnd+cn5vJmo+RsBqcl8imN5KTRKGXdzeCM2Jo1GiVnz62//4GlGxqCsxl8gDZKyc+4AAAAADhpOizMGCsMp2xYEIbTgjKczdTvBTYUU0w+Yrb572bAITnOOWNl/sS4siqHP4NA/SiL4e/ycZxfi685Y2v5eLfIDH6xZ/FCOX+eTCbf56MJ56NRN5DfR3MxvJaPK4sMAvny5zIIt8gMgk0GT+HQk/pLB2INCAWSwZDzHJNfjpEZTDYZdMOh7q4M2IRfr8Nhp+R4ucw/m8GKl+d8Ya3WtIgMFnwdZjBfzFdMZ8CXy6WZwVRuJh/tFpwC8V5Y8+uJykB4YSQDucswMmAjseG0Wm4qRAaMl8MM5quV3N7FGayS64CpvaVzZAZiZ/i57YHYIMo9qWtkBsFnM3jhwcTJbSJX+8d3MlD9gMpAbBADB98MMgO2yeB6GczX2xmM5tcLlUFXDD06uGNQGYx4tF/gyyiDRXhcUAiHhzKDUbgWAssl/3UqgyVXx0zP4i8uFv7rWq7+wuOrnJ92u6tg8TIbqWOmnDxemFgu+a9TGbwGq+HHD53l5AZDHE0UUq9qv4a5/302IPeaRiEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8E/4D/eahpm4p1UbAAAAAElFTkSuQmCC" alt="">
+    </div>
+    <nav class="space-x-3 text-sm hidden md:flex">
       <a href="#" class="hover:text-gray-300">Home</a>
       <a href="#" class="hover:text-gray-300">TV Shows</a>
       <a href="#" class="hover:text-gray-300">Movies</a>
       <a href="#" class="hover:text-gray-300">New & Popular</a>
       <a href="#" class="hover:text-gray-300">My List</a>
     </nav>
-    <div class="space-x-4">
+    <div class="flex items-center space-x-3 text-sm">
       <button class="hover:text-gray-300">Search</button>
       <button class="hover:text-gray-300">Notifications</button>
-      <img class="rounded-full w-8 h-8 object-cover" src="./img/avatar-removebg-preview.png" alt="User Avatar" class="rounded-full">
+      <img class="rounded-full w-8 h-8 object-cover" src="data:image/jpeg;base64,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" alt="User Avatar">
+<div class="flex-1 p-4">
+  <div id="side-menu" class="side-menu fixed top-0 left-0 w-64 h-full bg-black text-white z-50 p-4">
+    <button id="menu-close" class="text-white text-2xl mb-4">
+      &times;
+    </button>
+    <nav class="space-y-4">
+      <a href="#" class="block text-lg hover:text-gray-400">Home</a>
+      <a href="#" class="block text-lg hover:text-gray-400">TV Shows</a>
+      <a href="#" class="block text-lg hover:text-gray-400">Movies</a>
+      <a href="#" class="block text-lg hover:text-gray-400">New & Popular</a>
+      <a href="#" class="block text-lg hover:text-gray-400">My List</a>
+    </nav>
+  </div>
     </div>
   </header>
 
- <!-- Hero Section -->
-<!-- Hero Section -->
-<section class="relative h-[90vh] bg-cover bg-center object-cover object-center" style="background-image: url('https://c4.wallpaperflare.com/wallpaper/512/1012/916/iron-man-movies-movie-poster-poster-wallpaper-preview.jpg');">
-  <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-  <div class="absolute bottom-10 left-10">
-    <h1 class="text-5xl font-bold mb-4">Featured Movie</h1>
-    <p class="text-xl mb-4">An exciting description of the featured movie goes here.</p>
-    <div class="flex space-x-4">
-      <button class="bg-white text-black px-6 py-3 rounded-md font-semibold">Play</button>
-      <button class="bg-gray-700 text-white px-6 py-3 rounded-md font-semibold">More Info</button>
-    </div>
-  </div>
-</section>
-
-
-
-  <!-- Content Grid -->
-  <section class="px-4 py-8">
-    <h2 class="text-2xl font-bold mb-4">Trending Now</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-      <div class="bg-gray-800 rounded overflow-hidden">
-        <img src="https://via.placeholder.com/300" alt="Movie" class="w-full h-40 object-cover">
+  <section class="relative h-[100vh] bg-cover bg-center object-cover object-center" style="background-image: url('https://c4.wallpaperflare.com/wallpaper/819/656/45/face-keanu-reeves-actor-looking-at-viewer-wallpaper-preview.jpg');">
+    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+    <div class="absolute bottom-10 left-10">
+      <h1 class="text-6xl font-bold mb-4">John wick</h1>
+      <p class="text-sm text-gray-400 mb-4">
+        As the city sleeps under the blanket of night, the name John Wick echoes in whispers through the underworld. He is a legend, a ghost, a man driven by vengeance and bound by a code that no one dares to challenge. The once quiet man who sought solace in a peaceful life now walks a path drenched in the blood of those who wronged him.
+      </p>      
+      <div class="flex space-x-4">
+        <button class="bg-white text-black px-8 py-3 rounded-md font-semibold">Play</button>
+        <button class="bg-gray-700 text-white px-8 py-3 rounded-md font-semibold">More Info</button>
       </div>
-      <div class="bg-gray-800 rounded overflow-hidden">
-        <img src="https://via.placeholder.com/300" alt="Movie" class="w-full h-40 object-cover">
-      </div>
-      <div class="bg-gray-800 rounded overflow-hidden">
-        <img src="https://via.placeholder.com/300" alt="Movie" class="w-full h-40 object-cover">
-      </div>
-      <!-- Repeat more items as needed -->
     </div>
   </section>
+
+  <section class="px-4 py-8">
+    <h2 class="text-2xl font-bold mb-4">New this week</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      
+      <div class="relative bg-gray-800 rounded overflow-hidden group">
+  <img src="https://4kwallpapers.com/images/walls/thumbs/18369.jpg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+  <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M8 5v14l11-7z" />
+    </svg>
+  </button>
+</div>
+<div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/18402.jpg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/18375.jpg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/18424.jpg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/18391.jpeg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/18450.jpg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/18281.jpeg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/18288.jpg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/18286.jpeg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/18110.jpg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/18263.jpg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/18176.jpg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/18162.jpg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/17916.jpeg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/17992.jpg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/17939.png" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/17638.jpg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+  <div class="relative bg-gray-800 rounded overflow-hidden group">
+    <img src="https://4kwallpapers.com/images/walls/thumbs/17820.jpg" alt="Movie" class="w-full h-40 object-cover transition-all duration-300">
+    <button class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+
+    </div>
+  </section>
+    <section class="px-6 py-8">
+        <h2 class="text-2xl font-semibold mb-4">Continue Watching</h2>
+        <div class="flex space-x-4 overflow-x-scroll scrollbar-hide">
+          
+          <div class="relative bg-gray-800 rounded overflow-hidden w-52 flex-shrink-0">
+            <img src="https://c4.wallpaperflare.com/wallpaper/94/797/206/kimi-no-na-wa-makoto-shinkai-starry-night-comet-wallpaper-preview.jpg" alt="Movie" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+              <button class="text-white bg-red-600 px-4 py-2 rounded">Play</button>
+            </div>
+            <div class="h-1.5 bg-gray-700">
+              <div class="bg-red-600 h-full" style="width: 60%;"></div>
+            </div>
+          </div>
+    
+          <div class="relative bg-gray-800 rounded overflow-hidden w-52 flex-shrink-0">
+            <img src="https://c4.wallpaperflare.com/wallpaper/469/411/650/ryan-gosling-blade-runner-2049-depressing-movie-scenes-hd-wallpaper-preview.jpg" alt="Movie" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+              <button class="text-white bg-red-600 px-4 py-2 rounded">Play</button>
+            </div>
+            <div class="h-1.5 bg-gray-700">
+              <div class="bg-red-600 h-full" style="width: 30%;"></div>
+            </div>
+          </div>
+    
+          <div class="relative bg-gray-800 rounded overflow-hidden w-52 flex-shrink-0">
+            <img src="https://c4.wallpaperflare.com/wallpaper/811/910/554/colossus-fantasy-art-landscape-artwork-wallpaper-preview.jpg" alt="Movie" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+              <button class="text-white bg-red-600 px-4 py-2 rounded">Play</button>
+            </div>
+            <div class="h-1.5 bg-gray-700">
+              <div class="bg-red-600 h-full" style="width: 75%;"></div>
+            </div>
+          </div>
+    
+          <div class="relative bg-gray-800 rounded overflow-hidden w-52 flex-shrink-0">
+            <img src="https://c4.wallpaperflare.com/wallpaper/554/376/11/the-mandalorian-star-wars-yoda-baby-yoda-tv-series-hd-wallpaper-preview.jpg" alt="Movie" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+              <button class="text-white bg-red-600 px-4 py-2 rounded">Play</button>
+            </div>
+            <div class="h-1.5 bg-gray-700">
+              <div class="bg-red-600 h-full" style="width: 7%;"></div>
+            </div>
+          </div>
+
+          <div class="relative bg-gray-800 rounded overflow-hidden w-52 flex-shrink-0">
+            <img src="https://c4.wallpaperflare.com/wallpaper/423/594/402/avatar-movies-cgi-render-wallpaper-preview.jpg" alt="Movie" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+              <button class="text-white bg-red-600 px-4 py-2 rounded">Play</button>
+            </div>
+            <div class="h-1.5 bg-gray-700">
+              <div class="bg-red-600 h-full" style="width: 90%;"></div>
+            </div>
+          </div>
+
+          <div class="relative bg-gray-800 rounded overflow-hidden w-52 flex-shrink-0">
+            <img src="https://c4.wallpaperflare.com/wallpaper/12/104/4/city-cityscape-night-wallpaper-preview.jpg" alt="Movie" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+              <button class="text-white bg-red-600 px-4 py-2 rounded">Play</button>
+            </div>
+            <div class="h-1.5 bg-gray-700">
+              <div class="bg-red-600 h-full" style="width: 45%;"></div>
+            </div>
+          </div>
+          <div class="relative bg-gray-800 rounded overflow-hidden w-52 flex-shrink-0">
+            <img src="https://c4.wallpaperflare.com/wallpaper/773/178/467/wonder-woman-gal-gadot-women-movies-wallpaper-preview.jpg" alt="Movie" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+              <button class="text-white bg-red-600 px-4 py-2 rounded">Play</button>
+            </div>
+            <div class="h-1.5 bg-gray-700">
+              <div class="bg-red-600 h-full" style="width: 85%;"></div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+<section class="px-6 py-8">
+    <h2 class="text-2xl font-semibold mb-4">TV Shows</h2>
+    <div class="flex space-x-4 overflow-x-scroll scrollbar-hide">
+        
+        <div class="relative bg-gray-800 rounded overflow-hidden w-52 flex-shrink-0">
+            <img src="https://images3.alphacoders.com/136/thumbbig-1369831.webp" alt="TV Show" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                <button class="text-white bg-red-600 px-4 py-2 rounded">Play</button>
+            </div>
+            <div class ="p-2 bg-black bg-opacity-50 rounded">
+                <p class="text-sm font-semibold text-white opacity-75">Games of thrones</p>
+            </div>
+        </div>
+
+        <div class="relative bg-gray-800 rounded overflow-hidden w-52 flex-shrink-0">
+            <img src="https://images7.alphacoders.com/131/thumbbig-1319607.webp" alt="TV Show" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                <button class="text-white bg-red-600 px-4 py-2 rounded">Play</button>
+            </div>
+            <div class="p-2 bg-black bg-opacity-50 rounded">
+                <p class="text-sm font-semibold text-white opacity-75">The Mandalorian</p>
+            </div>
+        </div>
+
+        <div class="relative bg-gray-800 rounded overflow-hidden w-52 flex-shrink-0">
+            <img src="https://images.alphacoders.com/135/thumbbig-1357803.webp" alt="TV Show" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                <button class="text-white bg-red-600 px-4 py-2 rounded">Play</button>
+            </div>
+            <div class="p-2 bg-black bg-opacity-50 rounded">
+                <p class="text-sm font-semibold text-white opacity-75">The Walking Dead</p>
+            </div>
+        </div>
+
+        <div class="relative bg-gray-800 rounded overflow-hidden w-52 flex-shrink-0">
+            <img src="https://images6.alphacoders.com/135/thumbbig-1358586.webp" alt="TV Show" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                <button class="text-white bg-red-600 px-4 py-2 rounded">Play</button>
+            </div>
+            <div class="p-2 bg-black bg-opacity-50 rounded">
+                <p class="text-sm font-semibold text-white opacity-75">Fallout</p>
+            </div>
+        </div>
+        <div class="relative bg-gray-800 rounded overflow-hidden w-52 flex-shrink-0">
+            <img src="https://images.alphacoders.com/792/thumbbig-792669.webp" alt="TV Show" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                <button class="text-white bg-red-600 px-4 py-2 rounded">Play</button>
+            </div>
+            <div class="p-2 bg-black bg-opacity-50 rounded">
+                <p class="text-sm font-semibold text-white opacity-75">Miraculous Ladybug</p>
+            </div>
+        </div>
+        <div class="relative bg-gray-800 rounded overflow-hidden w-52 flex-shrink-0">
+            <img src="https://images5.alphacoders.com/135/thumbbig-1358965.webp" alt="TV Show" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                <button class="text-white bg-red-600 px-4 py-2 rounded">Play</button>
+            </div>
+            <div class="p-2 bg-black bg-opacity-50 rounded">
+                <p class="text-sm font-semibold text-white opacity-75">Parasyte: The Grey</p>
+            </div>
+        </div>
+        <div class="relative bg-gray-800 rounded overflow-hidden w-52 flex-shrink-0">
+            <img src="https://images7.alphacoders.com/134/thumbbig-1345074.webp" alt="TV Show" class="w-full h-32 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                <button class="text-white bg-red-600 px-4 py-2 rounded">Play</button>
+            </div>
+            <div class="p-2 bg-black bg-opacity-50 rounded">
+                <p class="text-sm font-semibold text-white opacity-75">YU YU Hakshubo</p>
+            </div>
+        </div>         
+    </div>
+</section>
+
+      <style>
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      </style>
+      <section class="movie-section bg-black text-white py-6">
+        <h2 class="text-2xl font-semibold px-4 mb-4">Popular Movies</h2>
+        <div class="movie-carousel flex overflow-x-scroll no-scrollbar space-x-4 px-4">
+          <div class="movie-item min-w-[200px] relative">
+            <img class="rounded-lg object-cover h-[300px] w-full" src="https://cdn.shopify.com/s/files/1/0057/3728/3618/files/scan_78cface5-e199-4a21-b714-4c1a6d2b20ca_500x749.jpg?v=1718312413" alt="Movie 1">
+            <div class="movie-info absolute inset-0 bg-black bg-opacity-60 opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4">
+              <h3 class="text-lg font-bold mb-2">Deadpool and Wolverine</h3>
+              <button class="bg-red-600 px-4 py-2 rounded-full hover:bg-red-700 transition-colors">Play</button>
+              <p class="text-sm mt-2"> comedic, action-packed movie about a former special forces operative turned mercenary who gains healing powers and sets out on a quest with wolverine</p>
+            </div>
+          </div>
+          <div class="movie-item min-w-[200px] relative">
+            <img class="rounded-lg object-cover h-[300px] w-full" src="https://cdn.shopify.com/s/files/1/0057/3728/3618/files/shawshank_eb84716b-efa9-44dc-a19d-c17924a3f7df_500x749.jpg?v=1709821984" alt="Movie 2">
+            <div class="movie-info absolute inset-0 bg-black bg-opacity-60 opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4">
+              <h3 class="text-lg font-bold mb-2">Shawshank Redemption</h3>
+              <button class="bg-red-600 px-4 py-2 rounded-full hover:bg-red-700 transition-colors">Play</button>
+              <p class="text-sm mt-2"> A powerful drama about hope and friendship, following Andy Dufresne, a banker wrongly imprisoned, who forms a bond with fellow inmate Red while finding ways to endure and defy the harsh realities of prison life.</p>
+            </div>
+          </div>
+          <div class="movie-item min-w-[200px] relative">
+            <img class="rounded-lg object-cover h-[300px] w-full" src="https://cdn.shopify.com/s/files/1/0057/3728/3618/files/darkknight.building.24x36_20e90057-f673-4cc3-9ce7-7b0d3eeb7d83_500x749.jpg?v=1707491191" alt="Movie 2">
+            <div class="movie-info absolute inset-0 bg-black bg-opacity-60 opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4">
+              <h3 class="text-lg font-bold mb-2">The Dark Knight</h3>
+              <button class="bg-red-600 px-4 py-2 rounded-full hover:bg-red-700 transition-colors">Play</button>
+              <p class="text-sm mt-2"> A gripping superhero thriller where Batman faces his greatest challenge as the Joker unleashes chaos in Gotham City, testing the limits of justice, morality, and the hero's own resolve.</p>
+            </div>
+          </div>
+          <div class="movie-item min-w-[200px] relative">
+            <img class="rounded-lg object-cover h-[300px] w-full" src="https://cdn.shopify.com/s/files/1/0057/3728/3618/files/LaLaLand.24x36_500x749.jpg?v=1708547804" alt="Movie 2">
+            <div class="movie-info absolute inset-0 bg-black bg-opacity-60 opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4">
+              <h3 class="text-lg font-bold mb-2">LA LA land</h3>
+              <button class="bg-red-600 px-4 py-2 rounded-full hover:bg-red-700 transition-colors">Play</button>
+              <p class="text-sm mt-2">"La La Land" is a vibrant musical romance that follows the love story between an aspiring actress and a jazz musician in Los Angeles, as they pursue their dreams and face the challenges of success and sacrifice.</p>
+            </div>
+          </div>
+          <div class="movie-item min-w-[200px] relative">
+            <img class="rounded-lg object-cover h-[300px] w-full" src="https://cdn.shopify.com/s/files/1/0057/3728/3618/files/homealone.124915_500x749.jpg?v=1723662930" alt="Movie 2">
+            <div class="movie-info absolute inset-0 bg-black bg-opacity-60 opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4">
+              <h3 class="text-lg font-bold mb-2">Home Alone</h3>
+              <button class="bg-red-600 px-4 py-2 rounded-full hover:bg-red-700 transition-colors">Play</button>
+              <p class="text-sm mt-2">is a classic family comedy about a young boy named Kevin who is accidentally left behind when his family goes on vacation. He must protect his home from two bumbling burglars using clever traps and tricks.</p>
+            </div>
+          </div>
+          <div class="movie-item min-w-[200px] relative">
+            <img class="rounded-lg object-cover h-[300px] w-full" src="https://www.movieposters.com/cdn/shop/products/jerrymaguire.flo.ar_240x360_crop_center.progressive.jpg?v=1597169327" alt="Movie 2">
+            <div class="movie-info absolute inset-0 bg-black bg-opacity-60 opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4">
+              <h3 class="text-lg font-bold mb-2">jerry maguire</h3>
+              <button class="bg-red-600 px-4 py-2 rounded-full hover:bg-red-700 transition-colors">Play</button>
+              <p class="text-sm mt-2">is a romantic comedy-drama about a sports agent who experiences a moral epiphany, leading him to start his own agency with a single client and a loyal assistant. As he navigates the ups and downs of his career and personal life, he learns about loyalty, love, and the value of genuine human connections.</p>
+            </div>
+          </div>
+          <div class="movie-item min-w-[200px] relative">
+            <img class="rounded-lg object-cover h-[300px] w-full" src="https://www.movieposters.com/cdn/shop/products/c104f1bfed20481f35bc96cb9addc940_240x360_crop_center.progressive.jpg?v=1573588574" alt="Movie 2">
+            <div class="movie-info absolute inset-0 bg-black bg-opacity-60 opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4">
+              <h3 class="text-lg font-bold mb-2">Titanic</h3>
+              <button class="bg-red-600 px-4 py-2 rounded-full hover:bg-red-700 transition-colors">Play</button>
+              <p class="text-sm mt-2">is an epic romance and disaster film set against the ill-fated maiden voyage of the RMS Titanic. The movie follows the love story of Jack and Rose, two passengers from different social classes, as they navigate their romance amidst the looming tragedy of the ship's sinking.</p>
+            </div>
+          </div>
+          <style>
+            .no-scrollbar::-webkit-scrollbar {
+              display: none;
+            }
+            .no-scrollbar {
+              -ms-overflow-style: none; 
+              scrollbar-width: none; 
+            }
+          </style>
+          
+        </div>
+      </section>
+      
+      <div class="my-8 px-4">
+        <h2 class="text-2xl font-bold mb-4">MY List</h2>
+        <div class="flex overflow-x-auto space-x-4 pb-4">
+          <div class="w-36 h-48 bg-gray-200 rounded-lg overflow-hidden">
+            <img src="https://www.movieposters.com/cdn/shop/products/the-dark-knight_944a13e1_8a1ceae1-6ed1-4592-82b4-af41c0f864de_240x360_crop_center.progressive.jpg?v=1651775468" alt="Movie 1" class="w-full h-full object-cover">
+          </div>
+          <div class="w-36 h-48 bg-gray-200 rounded-lg overflow-hidden">
+            <img src="https://www.movieposters.com/cdn/shop/products/firstblood.af_240x360_crop_center.progressive.jpg?v=1626456817" alt="Movie 2" class="w-full h-full object-cover">
+          </div>
+          <div class="w-36 h-48 bg-gray-200 rounded-lg overflow-hidden">
+            <img src="https://www.movieposters.com/cdn/shop/products/ed4796ac6feff9d2a6115406f964c928_6b200bda-fe71-4900-ad7f-903cdda50dab_240x360_crop_center.progressive.jpg?v=1573587596" alt="Movie 3" class="w-full h-full object-cover">
+          </div>
+          <div class="w-36 h-48 bg-gray-200 rounded-lg overflow-hidden">
+            <img src="https://cdn.shopify.com/s/files/1/0057/3728/3618/products/a500a77c20007cc1a2b15bbb2f591e9b_796ba879-2793-4f78-938a-929863147150_500x749.jpg?v=1573585491" alt="Movie 3" class="w-full h-full object-cover">
+          </div>
+          <div class="w-36 h-48 bg-gray-200 rounded-lg overflow-hidden">
+            <img src="https://cdn.shopify.com/s/files/1/0057/3728/3618/files/loki_yfkpt5kf_500x749.jpg?v=1702399323" alt="Movie 3" class="w-full h-full object-cover">
+          </div>
+          <div class="w-36 h-48 bg-gray-200 rounded-lg overflow-hidden">
+            <img src="https://cdn.shopify.com/s/files/1/0057/3728/3618/products/ItemP4338_jpg_500x749.jpg?v=1665674368" alt="Movie 3" class="w-full h-full object-cover">
+          </div>
+          <div class="w-36 h-48 bg-gray-200 rounded-lg overflow-hidden">
+            <img src="https://cdn.shopify.com/s/files/1/0057/3728/3618/files/9c0a783505db76a3e8f709112839fb87_e9044fcb-0df0-4fbf-8f24-aa43972460e1_500x749.jpg?v=1707245330" alt="Movie 3" class="w-full h-full object-cover">
+          </div>
+          <div class="w-36 h-48 bg-gray-200 rounded-lg overflow-hidden">
+            <img src="https://cdn.shopify.com/s/files/1/0057/3728/3618/files/friday.24x36_500x749.jpg?v=1707498453" alt="Movie 3" class="w-full h-full object-cover">
+          </div>
+          <div class="w-36 h-48 bg-gray-200 rounded-lg overflow-hidden">
+            <img src="https://cdn.shopify.com/s/files/1/0057/3728/3618/files/everything-everywhere-all-at-once_500x749.jpg?v=1709325442" alt="Movie 3" class="w-full h-full object-cover">
+          </div>
+          <div class="w-36 h-48 bg-gray-200 rounded-lg overflow-hidden">
+            <img src="https://cdn.shopify.com/s/files/1/0057/3728/3618/products/ItemN241475_jpg_500x749.jpg?v=1641576614" alt="Movie 3" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+      <footer class="bg-black text-gray-400 py-8">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+            <!-- Column 1 -->
+            <div>
+              <h4 class="text-white font-semibold mb-4">Questions?</h4>
+              <ul>
+                <li><a href="#" class="hover:underline">FAQ</a></li>
+                <li><a href="#" class="hover:underline">Investor Relations</a></li>
+                <li><a href="#" class="hover:underline">Privacy</a></li>
+                <li><a href="#" class="hover:underline">Help Center</a></li>
+              </ul>
+            </div>
+      
+            <!-- Column 2 -->
+            <div>
+              <h4 class="text-white font-semibold mb-4">About Us</h4>
+              <ul>
+                <li><a href="#" class="hover:underline">Careers</a></li>
+                <li><a href="#" class="hover:underline">Press</a></li>
+                <li><a href="#" class="hover:underline">Affiliates</a></li>
+                <li><a href="#" class="hover:underline">Contact Us</a></li>
+              </ul>
+            </div>
+      
+            <!-- Column 3 -->
+            <div>
+              <h4 class="text-white font-semibold mb-4">Legal</h4>
+              <ul>
+                <li><a href="#" class="hover:underline">Terms of Use</a></li>
+                <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+                <li><a href="#" class="hover:underline">Cookies Preferences</a></li>
+              </ul>
+            </div>
+      
+            <!-- Column 4 -->
+            <div>
+              <h4 class="text-white font-semibold mb-4">Social Media</h4>
+              <div class="flex space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+      
+          <div class="border-t border-gray-700 pt-4">
+            <p class="text-center text-sm text-gray-500">© 2024 Netflix clone All Rights Reserved.</p>
+          </div>
+        </div>
+      </footer>
+      
+
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const sideMenu = document.getElementById('side-menu');
+    const menuClose = document.getElementById('menu-close');
+
+    menuToggle.addEventListener('click', () => {
+      sideMenu.classList.add('open');
+    });
+
+    menuClose.addEventListener('click', () => {
+      sideMenu.classList.remove('open');
+    });
+  </script>
 
 </body>
 </html>
